@@ -162,7 +162,7 @@ app.get('/auth/github/callback', async (req, res) => {
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      domain: process.env.NODE_ENV === 'production' ? 'www.resyoume.site' : undefined
+      domain: process.env.NODE_ENV === 'production' ? 'www.resyoume.netlify.app' : undefined
     });
 
     res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
@@ -179,7 +179,7 @@ app.post('/api/auth/logout', (req, res) => {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-    domain: process.env.NODE_ENV === 'production' ? '.yourdomain.com' : undefined
+    domain: process.env.NODE_ENV === 'production' ? 'www.resyoume.netlify.app' : undefined
   });
   res.json({ success: true, message: 'Logged out successfully' });
 });
@@ -194,12 +194,6 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
 });
-
-
-app.use('/api/users', userRoutes);
-app.use('/api/resumes', resumeRoutes)
-app.use("/api", portfolioRoutes);
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
