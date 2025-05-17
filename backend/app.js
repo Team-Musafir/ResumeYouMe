@@ -162,7 +162,7 @@ app.get('/auth/github/callback', async (req, res) => {
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      domain: process.env.NODE_ENV === 'production' ? 'www.resyoume.netlify.app' : undefined
+      domain: process.env.NODE_ENV === 'production' ? 'www.resyoume.site' : undefined
     });
 
     res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
@@ -179,7 +179,7 @@ app.post('/api/auth/logout', (req, res) => {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-    domain: process.env.NODE_ENV === 'production' ? 'www.resyoume.netlify.app' : undefined
+    domain: process.env.NODE_ENV === 'production' ? 'www.resyoume.site' : undefined
   });
   res.json({ success: true, message: 'Logged out successfully' });
 });
